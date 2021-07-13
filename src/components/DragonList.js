@@ -2,6 +2,7 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
+// set up connect and mapStateToProps
 class DragonList extends React.Component {
   state = {
     newMember: ''
@@ -22,7 +23,7 @@ class DragonList extends React.Component {
     return (
       <div>
         <div className="friends-list">
-          {this.state.members.map((member, index) => (
+          {this.props.members.map((member, index) => (
             <h4 key={index}>
               {member.name}
               {member.dragonStatus && <i className="fas fa-dragon" />}
@@ -43,7 +44,7 @@ class DragonList extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    
+
   }
 }
 
