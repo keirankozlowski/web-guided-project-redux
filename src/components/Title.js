@@ -17,7 +17,7 @@ const Title = (props) => {
           <h2>{props.title}{' '}
             <i
               className="far fa-edit"
-              onClick={props.handleToggleEditing}
+              onClick={props.toggleEditing}
             />
           </h2>
         ) : (
@@ -30,7 +30,7 @@ const Title = (props) => {
               onChange={handleChanges}
             />
             <button
-              onClick={handleSubmit}>
+              onClick={() => props.updateTitle(newTitleText)}>
               Update title
             </button>
           </div>
@@ -48,4 +48,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { updateTitle })(Title);
+export default connect(mapStateToProps, { toggleEditing, updateTitle })(Title);
