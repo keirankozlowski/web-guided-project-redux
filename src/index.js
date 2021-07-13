@@ -5,13 +5,13 @@ import Title from './components/Title';
 import DragonList from './components/DragonList';
 import './styles.css';
 
-import titleReducer from './reducers/titleReducer';
+import { rootReducer } from './reducers';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-const store = createStore(titleReducer, );
+const store = createStore(rootReducer);
 
 function App() {
   return (

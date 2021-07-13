@@ -1,32 +1,32 @@
 import React from 'react';
-import DragonMember from './DragonMember';
+
+import { connect } from 'react-redux';
 
 class DragonList extends React.Component {
   state = {
-    newMember: '',
-    members: [
-      { name: 'Jojo Zhang', dragonStatus: true },
-      { name: 'Brandon Harris', dragonStatus: false }
-    ]
+    newMember: ''
   };
 
   handleChanges = e => {
     this.setState({ ...this.state, newMember: e.target.value });
   };
 
-  handleClick = ()=> {
-    this.setState({
-      ...this.state,
-      members: [...this.state.members, {name: this.state.newMember, dragonStatus: true}]
-    })
-  }
+  // handleClick = ()=> {
+  //   this.setState({
+  //     ...this.state,
+  //     members: [...this.state.members, {name: this.state.newMember, dragonStatus: true}]
+  //   })
+  // }
 
   render() {
     return (
       <div>
         <div className="friends-list">
           {this.state.members.map((member, index) => (
-            <DragonMember key={index} member={member}/>
+            <h4 key={index}>
+              {member.name}
+              {member.dragonStatus && <i className="fas fa-dragon" />}
+            </h4>
           ))}
         </div>
         <input
@@ -38,6 +38,12 @@ class DragonList extends React.Component {
         <button onClick={this.handleClick}>Add member</button>
       </div>
     );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    
   }
 }
 
