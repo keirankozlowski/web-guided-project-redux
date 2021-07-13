@@ -17,7 +17,7 @@ class DragonList extends React.Component {
   handleClick = ()=> {
     this.setState({
       ...this.state,
-      members: [...this.members, {name: newMember, dragonStatus: true}]
+      members: [...this.state.members, {name: this.state.newMember, dragonStatus: true}]
     })
   }
 
