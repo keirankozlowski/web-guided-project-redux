@@ -1,4 +1,5 @@
 import React from 'react';
+import { addMember } from '../actions/dragonListActions';
 
 import { connect } from 'react-redux';
 
@@ -36,7 +37,12 @@ class DragonList extends React.Component {
           onChange={this.handleChanges}
           placeholder="Add new member"
         />
-        <button onClick={this.handleClick}>Add member</button>
+        <button onClick={() => {
+          this.props.addMember(this.state.newMember);
+          this.setState({ newMember: '' });
+        }}>
+          Add member
+        </button>
       </div>
     );
   }
@@ -44,8 +50,8 @@ class DragonList extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-
+    members: state.dragonListReducer.members
   }
 }
 
-export default DragonList;
+export default connect(mapStateToProps, { addMember })(DragonList);
