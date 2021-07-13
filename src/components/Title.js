@@ -1,32 +1,51 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
-import { initialState, titleReducer } from '../reducers/titleReducer';
 import { toggleEditing, updateTitle} from './../actions/titleActions';
 
-import TitleDisplay from './TitleDisplay';
-import TitleForm from './TitleForm';
+const Title = (props) => {
+  const [newTitleText, setNewTitleText] = useState("");
 
-const Title = () => {
-  const [state, dispatch] = useReducer(titleReducer, initialState);
-
-  const handleToggleEditing = () => {
-    dispatch(toggleEditing());
-  }
-
-  const handleTitleUpdate = (title) => {
-    dispatch(updateTitle(title));
+  const handleChanges = e => {
+    setNewTitleText(e.target.value);
   }
 
   return (
     <div>
-      <h1>{state.appName}</h1>
       {
-        !state.editing ? 
-          <TitleDisplay title={state.title} handleToggleEditing={handleToggleEditing}/>: 
-          <TitleForm handleTitleUpdate={handleTitleUpdate}/>
+        !props.editing ? (
+          <h2>{props.title}{' '}
+            <i
+              className="far fa-edit"
+              onClick={props.handleToggleEditing}
+            />
+          </h2>
+        ) : (
+          <div>
+            <input
+              className="title-input"
+              type="text"
+              name="newTitleText"
+              value={newTitleText}
+              onChange={handleChanges}
+            />
+            <button
+              onClick={handleSubmit}>
+              Update title
+            </button>
+          </div>
+        )
       }
     </div>
   );
 };
 
-export default Title;
+const mapStateToProps = (state) => {
+  // console.log(state);
+  return {
+    editing: state.editing,
+    title: state.title
+  };
+};
+
+export default connect(mapStateToProps, { updateTitle })(Title);

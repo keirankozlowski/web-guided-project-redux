@@ -1,10 +1,9 @@
 export const initialState = {
-    appName: "Redux Test",
     title: "Dragon Member List 🐲",
     editing: false
-  };
+};
   
-const titleReducer = (state, action) => {
+const titleReducer = (state = initialState, action) => {
   switch (action.type) {
     case "UPDATE_TITLE":
       return {
